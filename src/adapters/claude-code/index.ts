@@ -1,7 +1,12 @@
 import { isDir } from "../../core/fsx.js";
 import type { CapabilityItem } from "../../core/inventory/model.js";
 import type { AssistantAdapter } from "../types.js";
+import { scanHooks } from "./hooks.js";
+import { scanMcpServers } from "./mcp.js";
 import { type ClaudeCodePaths, resolvePaths } from "./paths.js";
+import { scanPlugins } from "./plugins.js";
+import { scanRules } from "./rules.js";
+import { scanSkillsDir } from "./skills.js";
 
 export interface ClaudeCodeAdapterOptions {
   /** Override $HOME — used by tests (fixture dirs) and the CLI's --home flag. */
@@ -21,6 +26,13 @@ export class ClaudeCodeAdapter implements AssistantAdapter {
   }
 
   async inventory(): Promise<CapabilityItem[]> {
-    return []; // assembled in later tasks
+    const [userSkills, plugins, mcpServers, hooks, rules] = await Promise.all([
+      scanSkillsDir(this.paths.skillsDir, { enabled: true }),
+      scanPlugins(this.paths),
+      scanMcpServers(this.paths),
+      scanHooks(this.paths),
+      scanRules(this.paths),
+    ]);
+    return [...userSkills, ...plugins, ...mcpServers, ...hooks, ...rules];
   }
 }
