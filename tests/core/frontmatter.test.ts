@@ -4,7 +4,8 @@ import { parseFrontmatter } from "../../src/core/frontmatter.js";
 
 describe("parseFrontmatter", () => {
   it("parses YAML frontmatter delimited by ---", () => {
-    const md = "---\nname: graphify\ndescription: knowledge graph tool\n---\n# Body\n";
+    const md =
+      "---\nname: graphify\ndescription: knowledge graph tool\n---\n# Body\n";
     expect(parseFrontmatter(md)).toEqual({
       name: "graphify",
       description: "knowledge graph tool",

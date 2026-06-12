@@ -8,7 +8,9 @@ export async function readTextFile(path: string): Promise<string | null> {
   }
 }
 
-export async function readJsonFile<T = unknown>(path: string): Promise<T | null> {
+export async function readJsonFile<T = unknown>(
+  path: string,
+): Promise<T | null> {
   const text = await readTextFile(path);
   if (text === null) return null;
   try {

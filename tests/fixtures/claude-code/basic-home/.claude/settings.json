@@ -7,7 +7,10 @@
     "SessionStart": [
       {
         "hooks": [
-          { "type": "command", "command": "node ~/.claude/hooks/session-start.js" }
+          {
+            "type": "command",
+            "command": "node ~/.claude/hooks/session-start.js"
+          }
         ]
       }
     ],
@@ -15,8 +18,14 @@
       {
         "matcher": "*",
         "hooks": [
-          { "type": "command", "command": "node ~/.claude/hooks/post-tool-use.js" },
-          { "type": "command", "command": "pwsh -File ~/.claude/hooks/audit.ps1" }
+          {
+            "type": "command",
+            "command": "node ~/.claude/hooks/post-tool-use.js"
+          },
+          {
+            "type": "command",
+            "command": "pwsh -File ~/.claude/hooks/audit.ps1"
+          }
         ]
       }
     ]

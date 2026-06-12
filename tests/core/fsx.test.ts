@@ -1,9 +1,14 @@
 // tests/core/fsx.test.ts
-import { mkdtemp, mkdir, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { isDir, listDirs, readJsonFile, readTextFile } from "../../src/core/fsx.js";
+import {
+  isDir,
+  listDirs,
+  readJsonFile,
+  readTextFile,
+} from "../../src/core/fsx.js";
 
 describe("fsx", () => {
   it("readJsonFile returns parsed JSON or null", async () => {

@@ -16,9 +16,13 @@ describe("stableId", () => {
 
   it("changes when any component changes", () => {
     const base = stableId("claude-code", "skill", "graphify", "local");
-    expect(stableId("claude-code", "plugin", "graphify", "local")).not.toBe(base);
+    expect(stableId("claude-code", "plugin", "graphify", "local")).not.toBe(
+      base,
+    );
     expect(stableId("claude-code", "skill", "pinokio", "local")).not.toBe(base);
-    expect(stableId("claude-code", "skill", "graphify", "other")).not.toBe(base);
+    expect(stableId("claude-code", "skill", "graphify", "other")).not.toBe(
+      base,
+    );
   });
 });
 
