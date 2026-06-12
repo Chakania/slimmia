@@ -1,0 +1,5 @@
+{
+  "name": "tidy-mem",
+  "version": "1.0.0",
+  "description": "Persistent episodic memory across sessions."
+}

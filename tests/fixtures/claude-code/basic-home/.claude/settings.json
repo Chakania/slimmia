@@ -1,0 +1,24 @@
+{
+  "enabledPlugins": {
+    "tidy-mem@acme-marketplace": true,
+    "mega-pack@acme-marketplace": false
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node ~/.claude/hooks/session-start.js" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "node ~/.claude/hooks/post-tool-use.js" },
+          { "type": "command", "command": "pwsh -File ~/.claude/hooks/audit.ps1" }
+        ]
+      }
+    ]
+  }
+}
