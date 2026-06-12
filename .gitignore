@@ -1,5 +1,8 @@
 node_modules/
 .vscode/
+
+# Personal machine audit — never publish
+docs/05-example-solution.md
 dist/
 coverage/
 *.log
