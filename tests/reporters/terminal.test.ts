@@ -33,7 +33,9 @@ describe("renderScanReport", () => {
 
     expect(report).toContain("ENVIRONMENT INVENTORY");
     // fixture totals: 4 skills, 2 plugins, 1 mcp, 3 hooks, 2 rules
-    expect(report).toMatch(/claude-code\s*│\s*4\s*│\s*2\s*│\s*1\s*│\s*3\s*│\s*2/);
+    expect(report).toMatch(
+      /claude-code\s*│\s*4\s*│\s*2\s*│\s*1\s*│\s*3\s*│\s*2/,
+    );
     expect(report).toContain("CONTEXT DEBT");
     expect(report).toContain("estimate, cl100k");
     expect(report).toContain("TOP OFFENDERS");
