@@ -1,0 +1,44 @@
+{
+  "name": "slimmia",
+  "version": "0.1.0",
+  "description": "Put your AI agents on a diet — scan, audit, slim, and sync AI agent environments.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgemoreno/slimmia.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "slimmia": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx src/cli/index.ts",
+    "test": "vitest run",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "commander": "^15.0.0",
+    "gpt-tokenizer": "^3.4.0",
+    "picocolors": "^1.1.1",
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
+    "@types/node": "^25.9.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}
