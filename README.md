@@ -43,7 +43,7 @@ slimmia was born from a real manual audit of a four-assistant development machin
 
 ## Status
 
-**Design phase.** The problem analysis, solution design, and roadmap are complete; implementation of v0.1 (`scan` for Claude Code) is starting. See [docs/03-roadmap.md](docs/03-roadmap.md).
+**v0.1 in development.** `slimmia scan` for Claude Code works against fixture environments (read-only inventory + token estimation + terminal report). Try it from a checkout: `pnpm install && pnpm build && node dist/cli.js scan`. See [docs/03-roadmap.md](docs/03-roadmap.md).
 
 | Doc | Contents |
 |---|---|
