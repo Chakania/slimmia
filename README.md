@@ -3,7 +3,7 @@
 > **Put your AI agents on a diet.**
 > Scan, audit, slim, and sync your AI agent environments — across every assistant you use.
 
-[![status](https://img.shields.io/badge/status-design%20phase-orange)](docs/03-roadmap.md)
+[![status](https://img.shields.io/badge/status-v0.1%20shipped-green)](docs/03-roadmap.md)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 ## The problem: agent bloat
@@ -43,7 +43,7 @@ slimmia was born from a real manual audit of a four-assistant development machin
 
 ## Status
 
-**v0.1 in development.** `slimmia scan` for Claude Code works against fixture environments (read-only inventory + token estimation + terminal report). Try it from a checkout: `pnpm install && pnpm build && node dist/cli.js scan`. See [docs/03-roadmap.md](docs/03-roadmap.md).
+**v0.1 shipped.** `slimmia scan` for Claude Code works — read-only inventory, token estimation, and terminal report, verified against a real machine. Try it from a checkout: `pnpm install && pnpm build && node dist/cli.js scan`. Next up: v0.1.1 scan-depth fixes from the first real-world run. See [docs/03-roadmap.md](docs/03-roadmap.md).
 
 | Doc | Contents |
 |---|---|
@@ -51,6 +51,45 @@ slimmia was born from a real manual audit of a four-assistant development machin
 | [02-solution-design.md](docs/02-solution-design.md) | Commands, architecture, adapter contract, slimfile spec |
 | [03-roadmap.md](docs/03-roadmap.md) | v0.1 → v1.0, success metrics, risks |
 | [04-case-study.md](docs/04-case-study.md) | The real-world audit that started the project |
+| [06-first-real-scan-findings.md](docs/06-first-real-scan-findings.md) | What the first real `scan` got right and what it missed |
+
+## Run it locally
+
+Until slimmia is published to npm, run it from a checkout.
+
+**Prerequisites:** Node.js ≥ 20 and pnpm (`corepack enable` activates the version pinned in `package.json`).
+
+```bash
+git clone https://github.com/Chakania/slimmia.git
+cd slimmia
+pnpm install
+pnpm build
+```
+
+**Scan your real environment** (read-only — the only thing it writes is `.slimmia/inventory.json` in the current directory):
+
+```bash
+node dist/cli.js scan          # terminal report: inventory table, context debt, top offenders
+node dist/cli.js scan --json   # raw inventory as JSON (pipe it to jq)
+```
+
+**Scan the bundled fixture** — a fake home directory with a known inventory (4 skills, 2 plugins, 1 MCP server, 3 hooks, 2 rules files), useful for trying slimmia without touching your own setup:
+
+```bash
+node dist/cli.js scan --home tests/fixtures/claude-code/basic-home
+```
+
+### Development
+
+```bash
+pnpm dev scan        # run from source without building (tsx)
+pnpm test            # vitest suite (runs entirely against fixtures — never your real config)
+pnpm lint            # biome check
+pnpm format          # biome format --write
+pnpm typecheck       # tsc --noEmit
+```
+
+The full local gate CI runs on every PR: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, plus a fixture scan, on Linux and Windows.
 
 ## Contributing
 
