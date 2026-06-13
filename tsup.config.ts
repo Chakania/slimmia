@@ -1,6 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
+  // Demo comment
   entry: { cli: "src/cli/index.ts" },
   format: "esm",
   target: "node20",
